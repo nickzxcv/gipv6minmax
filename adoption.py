@@ -9,6 +9,7 @@ adoption_json = re.search('var googleIPv6AdoptionData = (\[.+\]);', adoption_js.
 
 data=json.loads(adoption_json)
 
+# each week starts as an empty list
 weeks=collections.defaultdict(list)
 for day_data in data:
     year=day_data[0]
@@ -18,8 +19,10 @@ for day_data in data:
     thisdate=date(year, month, day)
     year=thisdate.isocalendar()[0]
     week=thisdate.isocalendar()[1]
+    # each day gets converted to its week and data added to weeks list
     weeks[date.fromisocalendar(year, week, 1)].append(ipv6_traffic)
 
+# find the range, high, and low values for each week
 for week, values in weeks.items():
     high=sorted(values)[-1]
     low=sorted(values)[0]
