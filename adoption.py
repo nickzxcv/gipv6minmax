@@ -12,6 +12,7 @@ adoption_js = requests.get(url)
 adoption_json = extract_json.search(adoption_js.text).group(1)
 
 data = json.loads(adoption_json)
+last_record=date(data[-1][0],data[-1][1]+1,data[-1][2])
 
 # each week starts as an empty list
 weeks = collections.defaultdict(list)
@@ -44,7 +45,7 @@ plt.plot(week_plot, high_plot, label="Maximum")
 plt.plot(week_plot, low_plot, label="Minimum")
 plt.plot(week_plot, range_plot, label="Range")
 plt.legend()
-plt.xlabel("Updated {}".format(datetime.now()))
+plt.xlabel("Updated {}\nLast record {}".format(datetime.now(),last_record))
 plt.ylabel("IPv6 as % of total Google traffic")
 
 plt.savefig('adoption.svg')
