@@ -45,6 +45,6 @@ plt.plot(week_plot, low_plot, label="Minimum")
 plt.plot(week_plot, range_plot, label="Range")
 plt.legend()
 plt.xlabel("Updated {}".format(datetime.now()))
-plt.ylabel("% of total Google traffic")
+plt.ylabel("IPv6 as % of total Google traffic")
 
 plt.savefig('adoption.svg')
