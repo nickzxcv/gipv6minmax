@@ -3,7 +3,7 @@ import collections
 import requests
 import re
 import matplotlib.pyplot as plt
-from datetime import date
+from datetime import date, datetime
 
 url = 'https://www.google.com/intl/en_ALL/ipv6/statistics/data/adoption.js'
 extract_json = re.compile(r'var googleIPv6AdoptionData = (\[.+\]);', re.DOTALL)
@@ -40,8 +40,11 @@ for week, values in weeks.items():
     range_plot.append(high-low)
     week_plot.append(week)
 
-plt.plot(week_plot, high_plot)
-plt.plot(week_plot, low_plot)
-plt.plot(week_plot, range_plot)
+plt.plot(week_plot, high_plot, label="Maximum")
+plt.plot(week_plot, low_plot, label="Minimum")
+plt.plot(week_plot, range_plot, label="Range")
+plt.legend()
+plt.xlabel("Updated {}".format(datetime.now()))
+plt.ylabel("% of total Google traffic")
 
 plt.savefig('adoption.svg')
