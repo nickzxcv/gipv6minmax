@@ -41,9 +41,9 @@ for week, values in weeks.items():
     range_plot.append(high-low)
     week_plot.append(week)
 
-plt.plot(week_plot, high_plot, label="Maximum")
-plt.plot(week_plot, low_plot, label="Minimum")
-plt.plot(week_plot, range_plot, label="Range")
+plt.plot(week_plot, high_plot, label="Weekly maximum")
+plt.plot(week_plot, low_plot, label="Weekly minimum")
+plt.plot(week_plot, range_plot, label="Weekly range")
 plt.legend()
 plt.xlabel("Updated {} - Last record {}".format(datetime.now(),last_record))
 plt.ylabel("IPv6 as % of total Google traffic")
